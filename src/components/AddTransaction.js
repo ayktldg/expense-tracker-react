@@ -4,9 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 
 const AddTransaction = () => {
   const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
 
   const { addTransaction } = useContext(GlobalContext);
+
+  const clearInputs = () => {
+    setText("");
+    setAmount();
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +23,7 @@ const AddTransaction = () => {
     };
 
     addTransaction(newTransaction);
+    clearInputs();
   };
 
   return (
